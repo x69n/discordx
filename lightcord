@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightcord</title>
+    
+    <!-- SEO & Hidden Meta Keywords / Search Engines Optimization -->
+    <meta name="description" content="Download Lightcord for Windows PC. Lightcord is a lightweight and secure Discord client modification supporting 300+ plugins, built for speed and ultimate privacy.">
+    <meta name="keywords" content="lightcord download pc, lightcord for windows exe, download lightcord client, best discord client mod, lightcord installer setup, lightcord plugins manager, secure discord client 64bit, lightcord custom themes app, lightweight discord alternative, open source discord client mod, lightcord github releases, fast discord desktop app">
+    <meta name="author" content="Lightcord Team">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Discord Embed Tags -->
+    <meta property="og:title" content="Lightcord">
+    <meta property="og:description" content="Lightcord is a lightweight and secure Discord client modification that supports over 300 plugins, built for speed and ultimate privacy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lightcord.live">
+    <meta property="og:image" content="https://i.imgur.com/HD6SJbv.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="theme-color" content="#8b5cf6">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lightcord">
+    <meta name="twitter:description" content="Lightcord is a lightweight and secure Discord client modification that supports over 300 plugins, built for speed and ultimate privacy.">
+    <meta name="twitter:image" content="https://files.catbox.moe/9u86sp.jpg">
+
+    <style>
+        /* Cyberpunk Violet Custom Cursor */
+        html, body, *, #privacyModal, .modal-card, button, a {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23a78bfa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolygon points='5 3 19 12 12 14 9 21 5 3'%3E%3C/polygon%3E%3C/svg%3E") 0 0, auto !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #08070b;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
+            color: #d1d5db;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2.5rem;
+            overflow-x: hidden;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: width 0.3s, height 0.3s;
+        }
+
+        /* Header Layout */
+        header {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+        }
+        .brand-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            color: #e5e7eb;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .action-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        .action-btn:hover {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.4);
+            color: #a78bfa;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Main Split Hero Section */
+        main {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 10;
+            padding: 3rem 0;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .badge-pill {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: 3.25rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+        .hero-title span {
+            background: linear-gradient(135deg, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            color: #9ca3af;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .hero-specs {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #6b7280;
+            align-items: center;
+        }
+        .hero-specs strong {
+            color: #e5e7eb;
+        }
+        .platform-icons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .platform-icons svg {
+            width: 18px;
+            height: 18px;
+            fill: #9ca3af;
+            transition: fill 0.2s;
+        }
+        .platform-icons svg:hover {
+            fill: #a78bfa;
+        }
+
+        .download-box {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: #ffffff;
+            padding: 0.9rem 2rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.25s ease;
+            flex: 1;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+            background: linear-gradient(135deg, #9333ea, #6d28d9);
+        }
+
+        /* Right Side Widget Box */
+        .hero-visual {
+            background: rgba(17, 15, 24, 0.7);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.5), transparent);
+        }
+
+        .visual-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .visual-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .feature-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 0.85rem 1rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+        .feature-item span:first-child {
+            color: #d1d5db;
+            font-weight: 500;
+        }
+        .feature-item span:last-child {
+            color: #a78bfa;
+            font-weight: 700;
+        }
+
+        /* Footer Marquee */
+        footer {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+            z-index: 10;
+        }
+        .marquee-track {
+            display: flex;
+            white-space: nowrap;
+            animation: scrollMarquee 25s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        .marquee-group {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            padding-right: 3rem;
+        }
+        .marquee-el {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .marquee-el::after {
+            content: '•';
+            color: #8b5cf6;
+        }
+
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Modal Styles */
+        #privacyModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 7, 11, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .modal-card {
+            background: #121018;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            color: #fff;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .close-modal:hover {
+            background: #8b5cf6;
+            border-color: #8b5cf6;
+        }
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        .policy-section {
+            margin-bottom: 1.5rem;
+        }
+        .policy-heading {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 0.5rem;
+        }
+        .policy-desc, .policy-list li {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .policy-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .policy-list li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 0.3rem;
+        }
+        .policy-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 1rem 0;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/jpeg" href="https://files.catbox.moe/9u86sp.jpg">
+</head>
+<body>
+    <div class="ambient-glow" id="ambientGlow"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="brand-header">
+            <div class="brand-logo">
+                <img src="https://files.catbox.moe/9u86sp.jpg" alt="Logo">
+            </div>
+            <span class="brand-name">Lightcord</span>
+        </div>
+        <div class="header-actions">
+            <button class="action-btn" id="openPrivacy">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Privacy
+            </button>
+            <a href="https://github.com/Joshix-1/Lightcord" target="_blank" class="action-btn">
+                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Split Hero Area -->
+    <main>
+        <div class="hero-content">
+            <div class="badge-pill">Next-Gen Modification</div>
+            <h1 class="hero-title">Experience Discord <span>Without Limits.</span></h1>
+            <p class="hero-desc">Lightcord is a lightweight and secure Discord client modification that supports over 300 plugins, built for speed and ultimate privacy.</p>
+            
+            <div class="hero-specs">
+                <div>Architecture: <strong>x64 / Universal</strong></div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span>Platforms:</span>
+                    <div class="platform-icons" title="Windows, macOS, Linux">
+                        <!-- Windows Logo -->
+                        <svg viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.6L24 0v11.4h-13.051M0 12.45h9.75v9.45L0 20.55m10.949-8.1h13.051V24l-13.051-1.8z"/></svg>
+                        <!-- Apple / macOS Logo -->
+                        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.83 5.34c.56-.68.94-1.63.84-2.58-.81.03-1.8.54-2.38 1.22-.52.6-.98 1.56-.86 2.5 lun.91.07 1.84-.46 2.4-1.14z"/></svg>
+                        <!-- Linux Logo -->
+                        <svg viewBox="0 0 24 24"><path d="M12.564 0c-.571 0-1.139.06-1.687.182-3.123.682-5.467 3.253-5.748 6.435-.121 1.343.183 2.624.814 3.737-.872.637-1.488 1.637-1.624 2.809-.204 1.744.475 3.395 1.764 4.471-.247.534-.413 1.111-.479 1.725-.137 1.258.337 2.453 1.227 3.265.89.812 2.067 1.253 3.328 1.254 1.261-.001 2.438-.442 3.328-1.254.89-.812 1.364-2.007 1.227-3.265-.066-.614-.232-1.191-.479-1.725 1.289-1.076 1.968-2.727 1.764-4.471-.136-1.172-.752-2.172-1.624-2.809.631-1.113.935-2.394.814-3.737-.253-2.859-2.355-5.228-5.122-6.108-.344-.11-.703-.18-1.071-.205zm.049 2.001c.176.01.35.04.521.091 2.079.658 3.593 2.463 3.805 4.831.088.989-.136 1.954-.627 2.804l-.392.68.739.388c.677.355 1.157 1.026 1.261 1.832.146 1.25-.333 2.431-1.266 3.197l-.763.626.541.692c.319.409.529.89.605 1.411.088.802-.218 1.571-.813 2.109-.595.538-1.378.835-2.213.835s-1.618-.297-2.213-.835c-.595-.538-.901-1.307-.813-2.109.076-.521.286-1.002.605-1.411l.541-.692-.763-.626c-.933-.766-1.412-1.947-1.266-3.197.104-.806.584-1.477 1.261-1.832l.739-.388-.392-.68c-.491-.85-.715-1.815-.627-2.804.212-2.368 1.726-4.173 3.805-4.831.171-.051.345-.081.521-.091z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="download-box">
+                <a href="https://github.com/x69n/discord/releases/download/v2.1/Lightcord.exe" class="btn-download">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download Latest Release
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="visual-header">
+                <span class="visual-title">System Overview</span>
+                <div class="status-dot"></div>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span>Plugin Support</span>
+                    <span>300+ Active</span>
+                </div>
+                <div class="feature-item">
+                    <span>Performance</span>
+                    <span>Ultra Low RAM</span>
+                </div>
+                <div class="feature-item">
+                    <span>Privacy Protection</span>
+                    <span>100% Local</span>
+                </div>
+                <div class="feature-item">
+                    <span>Open Source</span>
+                    <span>Verified Code</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Marquee -->
+    <footer>
+        <div class="marquee-track">
+            <div class="marquee-group">
+                <span class="marquee-el">50K+ Active Downloads</span>
+                <span class="marquee-el">Open Source Project</span>
+                <span class="marquee-el">Privacy Focused Engine</span>
+                <span class="marquee-el">Advanced Custom Themes</span>
+            </div>
+            <div class="marquee-group">
+                <span class="marquee-el">50K+ Active Downloads</span>
+                <span class="marquee-el">Open Source Project</span>
+                <span class="marquee-el">Privacy Focused Engine</span>
+                <span class="marquee-el">Advanced Custom Themes</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div id="privacyModal">
+        <div class="modal-card">
+            <button class="close-modal" id="closePrivacy">&times;</button>
+            <h2 class="modal-title">Privacy Policy</h2>
+            
+            <div class="policy-section">
+                <h3 class="policy-heading">Our Commitment to Your Privacy</h3>
+                <p class="policy-desc">Lightcord is committed to protecting your privacy and personal data. We ensure a secure and private experience while using our client.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="policy-heading">Data We Do Not Collect</h3>
+                <ul class="policy-list">
+                    <li>We do not collect any personal information.</li>
+                    <li>We do not track your activity on Discord.</li>
+                    <li>We do not sell or share any data.</li>
+                    <li>We do not use tracking cookies.</li>
+                    <li>We do not send your data to third parties.</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="policy-heading">Security</h3>
+                <p class="policy-desc">All modifications run locally on your device. The project is fully open-source, allowing anyone to review the code and ensure there is no malicious activity.</p>
+            </div>
+
+            <div class="policy-section">
+                <h3 class="policy-heading">Disclaimer</h3>
+                <p class="policy-desc">Lightcord is an independent project and not affiliated with Discord. Use Lightcord at your own risk. We assume no responsibility for any issues that may occur.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ambientGlow = document.getElementById('ambientGlow');
+
+        window.addEventListener('mousemove', (e) => {
+            ambientGlow.style.left = e.clientX + 'px';
+            ambientGlow.style.top = e.clientY + 'px';
+        });
+
+        const modal = document.getElementById('privacyModal');
+        const openBtn = document.getElementById('openPrivacy');
+        const closeBtn = document.getElementById('closePrivacy');
+
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
